@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
+
 
 type MenuKey = 'life' | 'works'
 
@@ -26,11 +28,13 @@ const DropDownMenu: React.FC<DropDownMenuProps> = ({ isOpen, enableFade = false,
 	)
 }
 
-const NavigationItems: Array<{ label: string; href: string; menu?: MenuKey }> = [
-	{ label: 'HOME', href: '#' },
+type NavigationItem = { label: string; href: string; menu?: MenuKey; isRoute?: boolean }
+
+const NavigationItems: NavigationItem[] = [
+	{ label: 'HOME', href: '/', isRoute: true },
 	{ label: 'LIFE', href: '#', menu: 'life' },
 	{ label: 'WORKS', href: '#', menu: 'works' },
-	{ label: 'ABOUT', href: '#' },
+	{ label: 'ABOUT', href: '/about', isRoute: true },
 ]
 
 const DropDownMenuContents: Record<MenuKey, Array<{ title: string; links: Array<{ label: string; href: string }> }>> = {
@@ -92,6 +96,12 @@ const Header: React.FC = () => {
 	const [isScrolled, setIsScrolled] = useState(false)
 	const [isHeaderHovered, setIsHeaderHovered] = useState(false)
 	const closeTimeoutRef = useRef<number | null>(null)
+	const location = useLocation()
+	const isAboutPage = location.pathname.startsWith('/about')
+
+	const scrollToTop = () => {
+		window.scrollTo({ top: 0, behavior: 'smooth' })
+	}
 
 	const clearCloseTimeout = () => {
 		if (closeTimeoutRef.current !== null) {
@@ -137,18 +147,40 @@ const Header: React.FC = () => {
 		}
 	}, [])
 
-	const isHoveringWhileScrolled = isScrolled && (isHeaderHovered || activeMenu !== null)
-	const textColorClass = isHoveringWhileScrolled || !isScrolled ? 'text-white' : 'text-[#962302]'
-	const signatureImageClasses = `signature-image ${isScrolled && !isHoveringWhileScrolled ? 'scrolled' : ''}`
-	const navTextColor = isHoveringWhileScrolled || !isScrolled ? 'text-white' : 'text-[#962302]'
-	const headerBackgroundClass = isScrolled
-		? (isHoveringWhileScrolled ? 'bg-[#A72703] shadow-md' : 'bg-transparent shadow-none')
-		: 'bg-[#A72703] shadow-md'
+	const isHeaderActive = isHeaderHovered || activeMenu !== null
+	const isHoveringWhileScrolled = isScrolled && isHeaderActive
+
+	let textColorClass = 'text-white'
+	let navTextColor = 'text-white'
+	let headerBackgroundClass = 'bg-[#A72703] shadow-md'
+	let signatureImageClasses = 'signature-image'
+
+	if (isAboutPage) {
+		if (isHeaderActive) {
+			textColorClass = 'text-white'
+			navTextColor = 'text-white'
+			headerBackgroundClass = 'bg-[#A72703] shadow-md'
+		} else {
+			textColorClass = 'text-[#962302]'
+			navTextColor = 'text-[#962302]'
+			headerBackgroundClass = 'bg-transparent shadow-none'
+			signatureImageClasses = 'signature-image scrolled'
+		}
+	} else {
+		textColorClass = isHoveringWhileScrolled || !isScrolled ? 'text-white' : 'text-[#962302]'
+		navTextColor = textColorClass
+		headerBackgroundClass = isScrolled
+			? (isHoveringWhileScrolled ? 'bg-[#A72703] shadow-md' : 'bg-transparent shadow-none')
+			: 'bg-[#A72703] shadow-md'
+		if (isScrolled && !isHoveringWhileScrolled) {
+			signatureImageClasses = 'signature-image scrolled'
+		}
+	}
 	const colorTransitionClass = 'transition-colors duration-300'
 
 	const handleHeaderMouseEnter = () => {
 		clearCloseTimeout()
-		if (isScrolled) {
+		if (isScrolled || isAboutPage) {
 			setIsHeaderHovered(true)
 		}
 	}
@@ -170,14 +202,22 @@ const Header: React.FC = () => {
 					onMouseLeave={scheduleClose}
 				>
 				{/* Left*/}
-				<div className={`signature-toggle font-bold text-3xl sm:text-4xl bebas-neue-regular ${colorTransitionClass} ${textColorClass}`}>
+				<NavLink
+					to="/"
+					end
+					className={`signature-toggle font-bold text-3xl sm:text-4xl bebas-neue-regular ${colorTransitionClass} ${textColorClass}`}
+					onClick={() => {
+						setActiveMenu(null)
+						scrollToTop()
+					}}
+				>
 					<span className="signature-text block">JOSÉ RIZAL</span>
 					<img
 						src="/Jose-Rizal_Signature.svg"
 						alt="José Rizal's signature"
 						className={signatureImageClasses}
 					/>
-				</div>
+				</NavLink>
 
 				{/* Right*/}
 				<nav className="h-full">
@@ -189,9 +229,35 @@ const Header: React.FC = () => {
 								onMouseEnter={() => openMenu(item.menu ?? null)}
 								onMouseLeave={item.menu ? scheduleClose : undefined}
 							>
-								<a href={item.href} className="animated-underline relative flex items-center justify-center">
-									<span className="block">{item.label}</span>
-								</a>
+								{item.isRoute ? (
+									<NavLink
+										to={item.href}
+										end={item.href === '/'}
+										className="animated-underline relative flex items-center justify-center"
+										onClick={() => {
+											setActiveMenu(null)
+											scrollToTop()
+										}}
+									>
+										<span className="block">{item.label}</span>
+									</NavLink>
+								) : (
+									<a
+										href={item.href}
+										className="animated-underline relative flex items-center justify-center"
+										onClick={(event) => {
+											event.preventDefault()
+											if (item.menu) {
+												openMenu(item.menu)
+											} else {
+												setActiveMenu(null)
+											}
+											scrollToTop()
+										}}
+									>
+										<span className="block">{item.label}</span>
+									</a>
+								)}
 							</li>
 						))}
 					</ul>

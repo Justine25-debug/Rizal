@@ -40,6 +40,9 @@ html, body {
 .animated-underline:focus::after {
   width: 100%;
 }
+.animated-underline[aria-current="page"]::after {
+  width: 100%;
+}
 .dropdown-title {
   position: relative;
   display: inline-block;
@@ -86,7 +89,7 @@ html, body {
   /* Reduced min-width to improve mobile fit and avoid horizontal overflow */
   min-width: 8rem;
   height: 3.5rem;
-  cursor: default;
+  cursor: pointer;
 }
 
 .signature-text,
