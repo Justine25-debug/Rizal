@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+/* Global safeguard to prevent accidental horizontal scroll on small screens */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/*Font Families*/
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.atkinson-hyperlegible-mono-regular {
+  font-family: "Atkinson Hyperlegible Mono", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Animated underline*/
+.animated-underline {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: currentColor;
+  transition: width 220ms cubic-bezier(.2,.8,.2,1);
+}
+.animated-underline:hover::after,
+.animated-underline:focus::after {
+  width: 100%;
+}
+.dropdown-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+.dropdown-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 220ms cubic-bezier(.2,.8,.2,1);
+}
+
+.group:hover .dropdown-title::after,
+.group:focus-within .dropdown-title::after {
+  width: 100%;
+}
+
+.group:hover .dropdown-title,
+.group:focus-within .dropdown-title {
+  color: #fcb53b;
+}
+
+.dropdown-link {
+  position: relative;
+  text-decoration: none;
+  transition: color 150ms ease-in-out;
+}
+
+.dropdown-link:hover,
+.dropdown-link:focus {
+  color: #fcb53b;
+}
+
+.signature-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Reduced min-width to improve mobile fit and avoid horizontal overflow */
+  min-width: 8rem;
+  height: 3.5rem;
+  cursor: default;
+}
+
+.signature-text,
+.signature-image {
+  transition: opacity 220ms cubic-bezier(.2,.8,.2,1);
+}
+
+.signature-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  max-height: 80%;
+  filter: brightness(0) invert(1);
+  transition: opacity 220ms cubic-bezier(.2,.8,.2,1), filter 220ms cubic-bezier(.2,.8,.2,1);
+}
+
+.signature-image.scrolled {
+  filter: invert(21%) sepia(92%) saturate(1678%) hue-rotate(356deg) brightness(92%) contrast(94%);
+}
+
+.signature-toggle:hover .signature-text,
+.signature-toggle:focus-within .signature-text {
+  opacity: 0;
+}
+
+.signature-toggle:hover .signature-image,
+.signature-toggle:focus-within .signature-image {
+  opacity: 1;
+}
+
+.archive-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.archive-card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1);
+  transform-origin: center;
+  z-index: 0;
+}
+
+.archive-card:hover .archive-card__image {
+  transform: scale(1.05);
+}
+
+.archive-card__overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms cubic-bezier(.2,.8,.2,1);
+  z-index: 1;
+}
+
+.archive-card:hover .archive-card__overlay {
+  opacity: 1;
+}
+
+.archive-card__label {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 220ms cubic-bezier(.2,.8,.2,1), transform 220ms cubic-bezier(.2,.8,.2,1);
+  z-index: 2;
+}
+
+.archive-card:hover .archive-card__label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.masonry-column {
+  background-clip: padding-box;
+}
