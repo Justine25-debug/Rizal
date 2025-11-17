@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
 								</p>
 							</div>
 						</div>
-						<p className="text-white/80 atkinson-hyperlegible-mono-regular text-base leading-relaxed">
+						<p className="text-white/80 atkinson-hyperlegible-mono-regular text-justify leading-relaxed">
 							Celebrating the life, works, and legacy of José Protacio Rizal Mercado y Alonso Realonda through this digital archive.
 						</p>
 					</div>
