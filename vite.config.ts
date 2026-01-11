@@ -4,6 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/Rizal/',
   plugins: [react(), tailwindcss()],
+  base: 'https://justine25-debug.github.io/Rizal/',
 })
