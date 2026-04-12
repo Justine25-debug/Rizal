@@ -1,0 +1,44 @@
+.rizal-family-chart.f3 {
+	--background-color: #fff8f5;
+	--text-color: #1a120b;
+	--male-color: #fde7dc;
+	--female-color: #fcefe7;
+	--genderless-color: #f2e9e4;
+}
+
+.rizal-family-chart .link {
+	stroke: rgba(167, 39, 3, 0.8) !important;
+	stroke-width: 2.5px;
+}
+
+.rizal-family-chart .link.f3-path-to-main {
+	stroke: rgba(167, 39, 3, 0.95) !important;
+	stroke-width: 4px;
+}
+
+.rizal-family-chart.f3-cont {
+	height: calc((var(--visible-rows, 6) - 1) * var(--card-y-spacing, 220px) + var(--card-height, 52px));
+	min-height: 900px;
+	max-height: none;
+}
+
+.rizal-family-chart div.card .card-inner {
+	border: 1px solid rgba(167, 39, 3, 0.2);
+}
+
+.rizal-family-chart div.card-rect {
+	width: var(--card-width, 280px);
+	min-height: var(--card-height, 96px);
+	padding: 10px 12px;
+	text-align: left;
+	justify-content: center;
+	overflow: visible;
+}
+
+.rizal-family-chart div.card-rect > div {
+	font-size: 0.98rem;
+	line-height: 1.25;
+	font-weight: 600;
+	white-space: normal;
+	word-break: break-word;
+}

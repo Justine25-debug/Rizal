@@ -1,18 +1,13 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const primaryLinks: Array<{ label: string; href: string }> = [
-	{ label: 'Home', href: '#' },
-	{ label: 'Life', href: '#life' },
-	{ label: 'Works', href: '#works' },
-	{ label: 'About', href: '#about' },
+	{ label: 'Home', href: '/' },
+	{ label: 'Life', href: '/life' },
+	{ label: 'Works', href: '/works' },
+	{ label: 'About', href: '/about' },
 ]
 
-const resourceLinks: Array<{ label: string; href: string }> = [
-	{ label: 'placeholder', href: '#' },
-	{ label: 'placeholder', href: '#' },
-	{ label: 'placeholder', href: '#' },
-	{ label: 'placeholder', href: '#' },
-]
 
 const Footer: React.FC = () => {
 	return (
@@ -64,21 +59,9 @@ const Footer: React.FC = () => {
 						<ul className="mt-3 space-y-2 text-lg atkinson-hyperlegible-mono-regular text-white/85">
 							{primaryLinks.map((link) => (
 								<li key={link.label}>
-									<a href={link.href} className="transition-opacity duration-200 hover:opacity-80">
+									<NavLink to={link.href} className="transition-opacity duration-200 hover:opacity-80">
 										{link.label}
-									</a>
-								</li>
-							))}
-						</ul>
-					</div>
-					<div className="space-y-4">
-						<h3 className="bebas-neue-regular text-2xl font-semibold uppercase tracking-wide">Resources</h3>
-						<ul className="mt-3 space-y-2 text-lg atkinson-hyperlegible-mono-regular text-white/85">
-							{resourceLinks.map((link) => (
-								<li key={link.label}>
-									<a href={link.href} className="transition-opacity duration-200 hover:opacity-80">
-										{link.label}
-									</a>
+									</NavLink>
 								</li>
 							))}
 						</ul>
