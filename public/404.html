@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <script>
+      ;(function () {
+        // 1 = repository site (https://<user>.github.io/<repo>/)
+        // 0 = user/organization site (https://<user>.github.io/)
+        const pathSegmentsToKeep = 1
+
+        const { protocol, hostname, port, pathname, search, hash } = window.location
+        const l = window.location
+
+        const repoBase = pathname
+          .split('/')
+          .slice(0, 1 + pathSegmentsToKeep)
+          .join('/')
+
+        const routePath = pathname
+          .slice(1)
+          .split('/')
+          .slice(pathSegmentsToKeep)
+          .join('/')
+
+        const redirectUrl =
+          protocol +
+          '//' +
+          hostname +
+          (port ? ':' + port : '') +
+          repoBase +
+          '/?/' +
+          routePath.replace(/&/g, '~and~') +
+          (search ? '&' + search.slice(1).replace(/&/g, '~and~') : '') +
+          hash
+
+        l.replace(redirectUrl)
+      })()
+    </script>
+  </head>
+  <body></body>
+</html>

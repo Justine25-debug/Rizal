@@ -3,6 +3,22 @@ import * as f3 from 'family-chart'
 import 'family-chart/styles/family-chart.css'
 import './family-chart-overrides.css'
 import { rizalFamilyTree, type FamilyNode } from './family-data'
+import franciscoMercadoImg from '../../assets/familytree/Rizal-Family-01-Father-Francisco-Mercado-150x150.jpg'
+import teodoraAlonsoImg from '../../assets/familytree/Rizal-Family-01-Mother-Teodora-Alonzo-150x150.jpg'
+import saturninaRizalImg from '../../assets/familytree/Rizal-Family-02-Sister-Saturnina-150x150.jpg'
+import pacianoRizalPhoto1Img from '../../assets/familytree/Rizal-Family-02-Brother-Paciano2-150x150.jpg'
+import pacianoRizalPhoto2Img from '../../assets/familytree/Rizal-Family-02-Brother-Paciano-150x150.jpg'
+import narcisaRizalImg from '../../assets/familytree/Rizal-Family-02-Sister-Narcisa-150x150.jpg'
+import olimpiaRizalPhoto1Img from '../../assets/familytree/Rizal-Family-02-Sister-Olympla2-150x150.jpg'
+import luciaRizalImg from '../../assets/familytree/Rizal-Family-02-Sister-Lucia-150x150.jpg'
+import mariaRizalImg from '../../assets/familytree/Rizal-Family-02-Sister-Maria-150x150.jpg'
+import josefaRizalImg from '../../assets/familytree/Rizal-Family-02-Sister-Josefa-150x150.jpg'
+import joseRizalImg from '../../assets/familytree/Rizal-at-29-150x150.jpg'
+import soledadRizalImg from '../../assets/familytree/Rizal-Family-02-Sister-Soledad-150x150.jpg'
+import olimpiaRizalPhoto2Img from '../../assets/familytree/Rizal-Family-02-Sister-Olympla-150x150.jpg'
+import trinidadRizalImg from '../../assets/familytree/Rizal-Family-02-Sister-Trinidad-150x150.jpg'
+import rizalFamilySistersImg from '../../assets/familytree/Rizal-Family-Sisters-1024x919.jpg'
+import rizalFamilyTreeImg from '../../assets/familytree/Rizal-Family-Tree.jpg'
 
 type ChartDatum = {
 	id: string
@@ -25,24 +41,24 @@ const CARD_X_SPACING = 340
 const CARD_Y_SPACING = 170
 const INITIAL_ZOOM = 2.4
 const MAIN_PERSON_ID = 'person-root'
-const REFERENCE_IMAGE_URL = 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-Tree.jpg'
+const REFERENCE_IMAGE_URL = rizalFamilyTreeImg
 const REFERENCE_SOURCE_URL = 'https://philippinefolklifemuseum.org/collection/jose-rizal/attachment/rizal-family-tree/#'
 
 const FAMILY_PHOTOS: Array<{ name: string; src: string }> = [
-	{ name: 'Francisco Mercado', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-01-Father-Francisco-Mercado-150x150.jpg' },
-	{ name: 'Teodora Alonso', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-01-Mother-Teodora-Alonzo-150x150.jpg' },
-	{ name: 'Saturnina Rizal', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-02-Sister-Saturnina-150x150.jpg' },
-	{ name: 'Paciano Rizal (Photo 1)', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-02-Brother-Paciano2-150x150.jpg' },
-	{ name: 'Paciano Rizal (Photo 2)', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-02-Brother-Paciano-150x150.jpg' },
-	{ name: 'Narcisa Rizal', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-02-Sister-Narcisa-150x150.jpg' },
-	{ name: 'Olimpia Rizal (Photo 1)', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-02-Sister-Olympla2-150x150.jpg' },
-	{ name: 'Lucia Rizal', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-02-Sister-Lucia-150x150.jpg' },
-	{ name: 'Maria Rizal', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-02-Sister-Maria-150x150.jpg' },
-	{ name: 'Josefa Rizal', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-02-Sister-Josefa-150x150.jpg' },
-	{ name: 'José Rizal', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-29-150x150.jpg' },
-	{ name: 'Soledad Rizal', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-02-Sister-Soledad-150x150.jpg' },
-	{ name: 'Olimpia Rizal (Photo 2)', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-02-Sister-Olympla-150x150.jpg' },
-	{ name: 'Trinidad Rizal', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-02-Sister-Trinidad-150x150.jpg' },
+	{ name: 'Francisco Mercado', src: franciscoMercadoImg },
+	{ name: 'Teodora Alonso', src: teodoraAlonsoImg },
+	{ name: 'Saturnina Rizal', src: saturninaRizalImg },
+	{ name: 'Paciano Rizal (Photo 1)', src: pacianoRizalPhoto1Img },
+	{ name: 'Paciano Rizal (Photo 2)', src: pacianoRizalPhoto2Img },
+	{ name: 'Narcisa Rizal', src: narcisaRizalImg },
+	{ name: 'Olimpia Rizal (Photo 1)', src: olimpiaRizalPhoto1Img },
+	{ name: 'Lucia Rizal', src: luciaRizalImg },
+	{ name: 'Maria Rizal', src: mariaRizalImg },
+	{ name: 'Josefa Rizal', src: josefaRizalImg },
+	{ name: 'José Rizal', src: joseRizalImg },
+	{ name: 'Soledad Rizal', src: soledadRizalImg },
+	{ name: 'Olimpia Rizal (Photo 2)', src: olimpiaRizalPhoto2Img },
+	{ name: 'Trinidad Rizal', src: trinidadRizalImg },
 ]
 
 const spouseToList = (spouse?: string | string[]) => {
@@ -251,7 +267,7 @@ const Family: React.FC = () => {
 
 				<section className="mt-10">
 					<img
-						src="https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Family-Sisters-1024x919.jpg"
+						src={rizalFamilySistersImg}
 						alt="Rizal Family Sisters"
 						className="h-auto w-full rounded-xl border border-[#A72703]/20 bg-white shadow-sm"
 						loading="lazy"

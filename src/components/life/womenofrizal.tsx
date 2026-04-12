@@ -1,4 +1,16 @@
 import React, { useEffect } from 'react'
+import segundaKatigbakPaintingImg from '../../assets/womenofrizal/Rizal-Women-Segunda-Katigbak-Painting-150x150.jpg'
+import leonorRiveraPaintingImg from '../../assets/womenofrizal/Rizal-Women-Leonor-Rivera-Painting-150x150.jpg'
+import leonorValenzuelaPaintingImg from '../../assets/womenofrizal/Rizal-Women-Leonor-Valenzuela-Painting-150x150.jpg'
+import leonorRiveraImg from '../../assets/womenofrizal/Rizal-Women-Leonor-Rivera-150x150.jpg'
+import consueloOrtigaPerezImg from '../../assets/womenofrizal/Rizal-Women-Consuelo-Ortiga-Perez-150x150.jpg'
+import oseisanImg from '../../assets/womenofrizal/Rizal-Women-O-Sei-San-150x150.jpg'
+import gertrudeBeckettImg from '../../assets/womenofrizal/Rizal-Women-Gertrude-Beckett-150x150.jpg'
+import suzanneJacobyImg from '../../assets/womenofrizal/Rizal-Women-Suzanne-Jacoby-150x150.jpg'
+import nellyBousteadImg from '../../assets/womenofrizal/Rizal-Women-Nelly-Boustead-150x150.jpg'
+import adelineBousteadImg from '../../assets/womenofrizal/Rizal-Women-Adeline-Boustead-150x150.jpg'
+import josephineBrackenBrImg from '../../assets/womenofrizal/Rizal-Women-Josephine_Bracken_BR-150x150.jpg'
+import josephineBrackenImg from '../../assets/womenofrizal/Rizal-Women-Josephine-Bracken-150x150.jpg'
 
 type RizalWomanPhoto = {
 	name: string
@@ -6,18 +18,18 @@ type RizalWomanPhoto = {
 }
 
 const WOMEN_OF_RIZAL_PHOTOS: RizalWomanPhoto[] = [
-	{ name: 'Segunda Katigbak (Painting)', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Women-Segunda-Katigbak-Painting-150x150.jpg' },
-	{ name: 'Leonor Rivera (Painting)', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Women-Leonor-Rivera-Painting-150x150.jpg' },
-	{ name: 'Leonor Valenzuela (Painting)', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Women-Leonor-Valenzuela-Painting-150x150.jpg' },
-	{ name: 'Leonor Rivera', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Women-Leonor-Rivera-150x150.jpg' },
-	{ name: 'Consuelo Ortiga Pérez', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Women-Consuelo-Ortiga-Perez-150x150.jpg' },
-	{ name: 'O-Sei-San', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Women-O-Sei-San-150x150.jpg' },
-	{ name: 'Gertrude Beckett', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Women-Gertrude-Beckett-150x150.jpg' },
-	{ name: 'Suzanne Jacoby', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Women-Suzanne-Jacoby-150x150.jpg' },
-	{ name: 'Nelly Boustead', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Women-Nelly-Boustead-150x150.jpg' },
-	{ name: 'Adeline Boustead', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Women-Adeline-Boustead-150x150.jpg' },
-	{ name: 'Josephine Bracken (BR)', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Women-Josephine_Bracken_BR-150x150.jpg' },
-	{ name: 'Josephine Bracken', src: 'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-Women-Josephine-Bracken-150x150.jpg' },
+	{ name: 'Segunda Katigbak (Painting)', src: segundaKatigbakPaintingImg },
+	{ name: 'Leonor Rivera (Painting)', src: leonorRiveraPaintingImg },
+	{ name: 'Leonor Valenzuela (Painting)', src: leonorValenzuelaPaintingImg },
+	{ name: 'Leonor Rivera', src: leonorRiveraImg },
+	{ name: 'Consuelo Ortiga Pérez', src: consueloOrtigaPerezImg },
+	{ name: 'O-Sei-San', src: oseisanImg },
+	{ name: 'Gertrude Beckett', src: gertrudeBeckettImg },
+	{ name: 'Suzanne Jacoby', src: suzanneJacobyImg },
+	{ name: 'Nelly Boustead', src: nellyBousteadImg },
+	{ name: 'Adeline Boustead', src: adelineBousteadImg },
+	{ name: 'Josephine Bracken (BR)', src: josephineBrackenBrImg },
+	{ name: 'Josephine Bracken', src: josephineBrackenImg },
 ]
 
 const WomenOfRizal: React.FC = () => {

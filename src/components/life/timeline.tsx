@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 type TimelineEvent = {
@@ -67,35 +67,6 @@ const CATEGORIES = [
     'Return to the Philippines and Second Trip Abroad',
     'Final Return, Exile, and Execution'
 ]
-
-const TIMELINE_BACKGROUND_IMAGES = [
-    'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-13-150x150.jpg',
-    'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-16-150x150.jpg',
-    'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-18-150x150.jpg',
-    'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-23-150x150.jpg',
-    'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-24-150x150.png',
-    'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-25-150x150.png',
-    'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-26-150x150.jpg',
-    'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-27-150x150.jpg',
-    'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-28-150x150.jpg',
-    'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-29-150x150.jpg',
-    'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-30-150x150.jpg',
-    'https://philippinefolklifemuseum.org/wp-content/uploads/Rizal-at-31-150x150.jpg',
-]
-
-const TIMELINE_BACKGROUND_REPEAT_COUNT = 420
-const TIMELINE_BACKGROUND_TILES = Array.from(
-    { length: TIMELINE_BACKGROUND_REPEAT_COUNT },
-    (_, index) => TIMELINE_BACKGROUND_IMAGES[index % TIMELINE_BACKGROUND_IMAGES.length],
-)
-
-const getTimelineBackgroundColumnCount = (width: number) => {
-    if (width >= 1280) return 7
-    if (width >= 1024) return 6
-    if (width >= 768) return 5
-    if (width >= 640) return 4
-    return 3
-}
 
 const TAB_PARAM = 'tab'
 
@@ -353,19 +324,6 @@ const Timeline: React.FC = () => {
     const [activeTab, setActiveTab] = useState(CATEGORIES[0])
     const [hoveredEventKey, setHoveredEventKey] = useState<string | null>(null)
     const [showScrollToTop, setShowScrollToTop] = useState(false)
-    const [backgroundColumnCount, setBackgroundColumnCount] = useState(() =>
-        typeof window === 'undefined' ? 7 : getTimelineBackgroundColumnCount(window.innerWidth),
-    )
-
-    useEffect(() => {
-        const handleResize = () => {
-            setBackgroundColumnCount(getTimelineBackgroundColumnCount(window.innerWidth))
-        }
-
-        handleResize()
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
 
     useEffect(() => {
         const handleScroll = () => {
@@ -376,14 +334,6 @@ const Timeline: React.FC = () => {
         window.addEventListener('scroll', handleScroll, { passive: true })
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
-
-    const backgroundColumns = useMemo(() => {
-        const columns = Array.from({ length: backgroundColumnCount }, () => [] as string[])
-        for (let index = 0; index < TIMELINE_BACKGROUND_TILES.length; index += 1) {
-            columns[index % backgroundColumnCount].push(TIMELINE_BACKGROUND_TILES[index])
-        }
-        return columns
-    }, [backgroundColumnCount])
 
     useEffect(() => {
         const tabSlug = searchParams.get(TAB_PARAM)
@@ -423,36 +373,6 @@ const Timeline: React.FC = () => {
 
     return (
         <section className="relative overflow-hidden py-16">
-            <div
-                className="pointer-events-none absolute inset-0 z-0 opacity-30"
-                aria-hidden="true"
-            >
-                <div
-                    className="grid h-full w-full gap-2 px-3 py-0"
-                    style={{ gridTemplateColumns: `repeat(${backgroundColumnCount}, minmax(0, 1fr))` }}
-                >
-                    {backgroundColumns.map((column, columnIndex) => (
-                        <div key={`timeline-background-column-${columnIndex}`} className="space-y-2">
-                            {column.map((src, tileIndex) => (
-                                <div
-                                    key={`${src}-${columnIndex}-${tileIndex}`}
-                                    className="overflow-hidden rounded-md border border-[#A72703]/10 bg-white/30"
-                                >
-                                    <img
-                                        src={src}
-                                        alt=""
-                                        className="block h-auto w-full"
-                                        loading="lazy"
-                                        decoding="async"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    ))}
-                </div>
-                <div className="absolute inset-0 bg-[#FFF8F5]/30" />
-            </div>
-
             <div className="relative z-10 mx-auto w-full max-w-7xl">
                 <header className="mb-10 rounded-xl border border-[#A72703]/15 bg-white px-4 py-4 text-center sm:px-6">
                     <div className="grid w-full grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-4 text-lg font-semibold uppercase bebas-neue-regular">

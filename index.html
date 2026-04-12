@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>José Rizal</title>
 
+    <script>
+      ;(function () {
+        const redirect = window.location.search
+        if (!redirect.includes('?/')) return
+
+        const decoded = redirect
+          .slice(1)
+          .replace(/~and~/g, '&')
+          .replace(/^\//, '')
+
+        const restoredUrl = decoded + window.location.hash
+        window.history.replaceState(null, '', restoredUrl)
+      })()
+    </script>
+
     <!-- Google Fonts -->
     <!-- Bebas Neue -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

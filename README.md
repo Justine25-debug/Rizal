@@ -12,6 +12,7 @@ This project is configured with:
 
 - `homepage`: `https://justine25-debug.github.io/Rizal/`
 - Vite production base path: `/Rizal/`
+- SPA reload fallback using `public/404.html` + redirect restore in `index.html`
 - deploy scripts using `gh-pages`
 
 ### Publish steps
