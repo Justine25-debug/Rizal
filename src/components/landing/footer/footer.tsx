@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
 					<div className="flex flex-col gap-4 lg:pr-6 sm:col-span-2 lg:col-span-1">
 						<div className="flex items-stretch gap-4 sm:gap-6">
 							<img
-								src="/jose-rizal-7122633.svg"
+								src={`${import.meta.env.BASE_URL}jose-rizal-7122633.svg`}
 								alt="Illustration of Dr. José Rizal"
 								className="w-28 sm:w-32 md:w-36 max-w-full shrink-0"
 							/>

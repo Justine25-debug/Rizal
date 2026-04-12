@@ -21,7 +21,10 @@ const Hero: React.FC = () => {
 	}, [])
 
 	return (
-		<section className="relative h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/Jose-Rizal_Fencing.jpg')]">
+		<section
+			className="relative h-screen w-full overflow-hidden bg-cover bg-center bg-no-repeat"
+			style={{ backgroundImage: `url('${import.meta.env.BASE_URL}Jose-Rizal_Fencing.jpg')` }}
+		>
 			<div className="absolute bottom-6 right-0 z-10 w-full px-6 text-right md:bottom-8 md:w-[48%] lg:w-[38%] lg:px-10">
 				<p
 					className="atkinson-hyperlegible-mono-regular text-base font-bold leading-relaxed text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.75)] lg:text-2xl"

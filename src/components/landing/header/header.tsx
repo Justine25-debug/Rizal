@@ -297,7 +297,7 @@ const Header: React.FC = () => {
 				>
 					<span className="signature-text block">JOSÉ RIZAL</span>
 					<img
-						src="/Jose-Rizal_Signature.svg"
+						src={`${import.meta.env.BASE_URL}Jose-Rizal_Signature.svg`}
 						alt="José Rizal's signature"
 						className={signatureImageClasses}
 					/>

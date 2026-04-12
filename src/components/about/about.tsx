@@ -43,7 +43,7 @@ const About: React.FC = () => {
 								About This Website
 							</h2>
 							<img
-								src="/icon.gif"
+								src={`${import.meta.env.BASE_URL}icon.gif`}
 								alt="Animated icon illustrating José Rizal"
 								className="h-auto w-full"
 								loading="lazy"
